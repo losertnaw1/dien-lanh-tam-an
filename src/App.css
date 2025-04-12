@@ -131,23 +131,51 @@ section h2::after {
   margin-top: 3rem;
 }
 
+/* Hiệu ứng hover cho service-card */
 .service-card {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(139, 195, 74, 0.1) 100%);
+  z-index: -1;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
 }
 
 .service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-15px) scale(1.03);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+}
+
+.service-card:hover::before {
+  transform: translateY(0);
 }
 
 .service-icon {
-  font-size: 3rem;
+  font-size: 3.5rem;
   margin-bottom: 1.5rem;
+  display: inline-block;
+  transition: transform 0.4s ease;
+  color: var(--primary-color);
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.2) rotate(10deg);
 }
 
 .service-card h3 {
@@ -173,24 +201,60 @@ section h2::after {
   margin-top: 3rem;
 }
 
+/* Hiệu ứng hover cho product-card */
 .product-card {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.product-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.2), transparent);
+  transition: left 0.7s ease;
+  z-index: -1;
 }
 
 .product-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-15px);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+}
+
+.product-card:hover::after {
+  left: 100%;
 }
 
 .product-card h3 {
-  font-size: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
   margin-bottom: 1rem;
-  color: var(--primary-color);
+}
+
+.product-card h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.4s ease;
+}
+
+.product-card:hover h3::after {
+  width: 50px;
 }
 
 .product-card p {
@@ -210,21 +274,31 @@ section h2::after {
   margin-top: 3rem;
 }
 
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
+/* Hiệu ứng cho contact-item */
 .contact-item {
   display: flex;
   align-items: flex-start;
+  transition: transform 0.3s ease;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+.contact-item:hover {
+  transform: translateX(10px);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .contact-icon {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-right: 1.5rem;
   color: var(--primary-color);
+  transition: transform 0.3s ease;
+}
+
+.contact-item:hover .contact-icon {
+  transform: scale(1.2);
 }
 
 .contact-text h3 {
@@ -244,6 +318,7 @@ section h2::after {
   gap: 1.5rem;
 }
 
+/* Hiệu ứng cho form */
 .form-group input,
 .form-group textarea {
   width: 100%;
@@ -252,6 +327,16 @@ section h2::after {
   border-radius: 5px;
   font-size: 1rem;
   font-family: inherit;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+  outline: none;
+  transform: translateY(-3px);
 }
 
 .form-group textarea {
@@ -266,20 +351,66 @@ section h2::after {
   font-size: 1.1rem;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
   font-weight: 600;
   align-self: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.7s ease;
 }
 
 .submit-button:hover {
   background-color: var(--dark-color);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.submit-button:hover::before {
+  left: 100%;
 }
 
 /* Footer */
+/* Hiệu ứng cho footer */
 .footer {
   background-color: #333;
   color: white;
   padding: 4rem 2rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+  background-size: 200% 100%;
+  animation: gradient-shift 5s infinite linear;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .footer-container {
@@ -291,10 +422,57 @@ section h2::after {
   margin-bottom: 3rem;
 }
 
+/* Hiệu ứng cho footer-links */
+.footer-links a {
+  position: relative;
+  display: inline-block;
+  padding: 3px 0;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--primary-color);
+}
+
+.footer-links a:hover::after {
+  width: 100%;
+}
+
+/* Hiệu ứng cho footer-logo */
 .footer-logo h3 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
   color: var(--primary-color);
+  position: relative;
+  display: inline-block;
+}
+
+.footer-logo h3::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.footer-logo:hover h3::after {
+  width: 100%;
 }
 
 .footer-logo p {
@@ -372,174 +550,4 @@ section h2::after {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-}
-
-.service-card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-}
-
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(139, 195, 74, 0.1) 100%);
-  transform: translateZ(-10px);
-  z-index: -1;
-  transition: transform 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-}
-
-.service-card:hover::before {
-  transform: translateZ(-5px);
-}
-
-.service-icon {
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
-
-.service-card:hover .service-icon {
-  transform: scale(1.2) translateZ(20px);
-}
-
-.product-card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  text-align: center;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.product-card::before {
-  content: '';
-  position: absolute;
-  top: -100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(76, 175, 80, 0.2), transparent);
-  transition: top 0.5s ease;
-  z-index: 0;
-}
-
-.product-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-}
-
-.product-card:hover::before {
-  top: 0;
-}
-
-.product-card h3 {
-  position: relative;
-  z-index: 1;
-}
-
-.product-card p {
-  position: relative;
-  z-index: 1;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-family: inherit;
-  transition: all 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.9);
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-  outline: none;
-}
-
-.form-group label {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  color: #666;
-  transition: all 0.3s ease;
-  pointer-events: none;
-}
-
-.form-group {
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-
-.form-group input:focus + label,
-.form-group textarea:focus + label,
-.form-group input:not(:placeholder-shown) + label,
-.form-group textarea:not(:placeholder-shown) + label {
-  top: -0.5rem;
-  left: 0.5rem;
-  font-size: 0.8rem;
-  background-color: white;
-  padding: 0 0.5rem;
-  color: var(--primary-color);
-}
-
-.submit-button {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-  align-self: flex-start;
-  position: relative;
-  overflow: hidden;
-}
-
-.submit-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.7s ease;
-}
-
-.submit-button:hover {
-  background-color: var(--dark-color);
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.submit-button:hover::before {
-  left: 100%;
 }
