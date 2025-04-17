@@ -86,6 +86,8 @@ section h2::after {
 /* About Section */
 .about-section {
   background-color: var(--light-color);
+  display: flex;
+  flex-direction: column;
 }
 
 .about-content {
@@ -93,6 +95,19 @@ section h2::after {
   flex-direction: column;
   align-items: center;
   text-align: left;
+  width: 100%;
+}
+
+.about-image-container {
+  width: 100%;
+  padding: 0;
+  margin-top: 3rem;
+}
+
+.about-image {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .about-text p {
@@ -131,51 +146,23 @@ section h2::after {
   margin-top: 3rem;
 }
 
-/* Hiệu ứng hover cho service-card */
 .service-card {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   text-align: center;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(139, 195, 74, 0.1) 100%);
-  z-index: -1;
-  transform: translateY(100%);
-  transition: transform 0.4s ease;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .service-card:hover {
-  transform: translateY(-15px) scale(1.03);
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
-}
-
-.service-card:hover::before {
-  transform: translateY(0);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .service-icon {
-  font-size: 3.5rem;
+  font-size: 3rem;
   margin-bottom: 1.5rem;
-  display: inline-block;
-  transition: transform 0.4s ease;
-  color: var(--primary-color);
-}
-
-.service-card:hover .service-icon {
-  transform: scale(1.2) rotate(10deg);
 }
 
 .service-card h3 {
@@ -201,60 +188,24 @@ section h2::after {
   margin-top: 3rem;
 }
 
-/* Hiệu ứng hover cho product-card */
 .product-card {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   text-align: center;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.product-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.2), transparent);
-  transition: left 0.7s ease;
-  z-index: -1;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .product-card:hover {
-  transform: translateY(-15px);
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
-}
-
-.product-card:hover::after {
-  left: 100%;
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .product-card h3 {
-  position: relative;
-  padding-bottom: 0.5rem;
+  font-size: 1.5rem;
   margin-bottom: 1rem;
-}
-
-.product-card h3::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background-color: var(--primary-color);
-  transition: width 0.4s ease;
-}
-
-.product-card:hover h3::after {
-  width: 50px;
+  color: var(--primary-color);
 }
 
 .product-card p {
@@ -264,7 +215,7 @@ section h2::after {
 
 /* Contact Section */
 .contact-section {
-  background-color: white;
+  background-color: var(--light-color);
 }
 
 .contact-content {
@@ -274,31 +225,43 @@ section h2::after {
   margin-top: 3rem;
 }
 
-/* Hiệu ứng cho contact-item */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .contact-item {
   display: flex;
-  align-items: flex-start;
-  transition: transform 0.3s ease;
-  padding: 1rem;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.05);
-  margin-bottom: 1.5rem;
+  align-items: center;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .contact-item:hover {
-  transform: translateX(10px);
-  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .contact-icon {
   font-size: 2.5rem;
   margin-right: 1.5rem;
   color: var(--primary-color);
-  transition: transform 0.3s ease;
+  background-color: rgba(76, 175, 80, 0.1);
+  padding: 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4rem;
+  height: 4rem;
 }
 
-.contact-item:hover .contact-icon {
-  transform: scale(1.2);
+.contact-text {
+  flex: 1;
 }
 
 .contact-text h3 {
@@ -310,6 +273,14 @@ section h2::after {
 .contact-text p {
   color: var(--text-light);
   line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.contact-form {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .contact-form form {
@@ -318,17 +289,16 @@ section h2::after {
   gap: 1.5rem;
 }
 
-/* Hiệu ứng cho form */
 .form-group input,
 .form-group textarea {
   width: 100%;
   padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
   font-size: 1rem;
   font-family: inherit;
-  transition: all 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: #f9f9f9;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .form-group input:focus,
@@ -336,81 +306,38 @@ section h2::after {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
   outline: none;
-  transform: translateY(-3px);
 }
 
 .form-group textarea {
   resize: vertical;
+  min-height: 120px;
 }
 
 .submit-button {
   background-color: var(--primary-color);
   color: white;
   border: none;
-  padding: 1rem 2rem;
+  padding: 1rem 2.5rem;
   font-size: 1.1rem;
-  border-radius: 5px;
+  border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 600;
   align-self: flex-start;
-  position: relative;
-  overflow: hidden;
-}
-
-.submit-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.7s ease;
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
 }
 
 .submit-button:hover {
   background-color: var(--dark-color);
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.submit-button:hover::before {
-  left: 100%;
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
 }
 
 /* Footer */
-/* Hiệu ứng cho footer */
 .footer {
   background-color: #333;
   color: white;
   padding: 4rem 2rem 1rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
-  background-size: 200% 100%;
-  animation: gradient-shift 5s infinite linear;
-}
-
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 .footer-container {
@@ -422,57 +349,10 @@ section h2::after {
   margin-bottom: 3rem;
 }
 
-/* Hiệu ứng cho footer-links */
-.footer-links a {
-  position: relative;
-  display: inline-block;
-  padding: 3px 0;
-  color: rgba(255, 255, 255, 0.7);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-links a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 1px;
-  bottom: 0;
-  left: 0;
-  background-color: var(--primary-color);
-  transition: width 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: var(--primary-color);
-}
-
-.footer-links a:hover::after {
-  width: 100%;
-}
-
-/* Hiệu ứng cho footer-logo */
 .footer-logo h3 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
   color: var(--primary-color);
-  position: relative;
-  display: inline-block;
-}
-
-.footer-logo h3::after {
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 2px;
-  bottom: -5px;
-  left: 0;
-  background-color: var(--primary-color);
-  transition: width 0.3s ease;
-}
-
-.footer-logo:hover h3::after {
-  width: 100%;
 }
 
 .footer-logo p {
